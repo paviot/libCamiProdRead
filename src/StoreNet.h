@@ -149,7 +149,7 @@ typedef map<unsigned int, Arc> ArcList;
 
 class StoreNet
 {
-private:
+public:
 	class Elements
 	{
 	private:
@@ -263,8 +263,6 @@ private:
 		CamiProdRead::Node *operator[](unsigned int i) const
 		{return _Elements[i];};
 	};
-
-public:
 
 /*! \var Elements Places
 	\brief Le container des places. */
