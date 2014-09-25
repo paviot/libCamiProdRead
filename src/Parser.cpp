@@ -25,6 +25,7 @@
 
 using namespace std;
 using namespace boost::spirit;
+using namespace boost::spirit::classic;
 using namespace phoenix;
 
 struct getplid_
@@ -42,7 +43,7 @@ struct getplid_
 	};
 };
 
-function<getplid_> const GetPlaceId = getplid_();
+phoenix::function<getplid_> const GetPlaceId = getplid_();
 
 struct newexpelt_
 {
@@ -61,7 +62,7 @@ struct newexpelt_
 	};
 };
 
-function<newexpelt_> const NewExpElt = newexpelt_();
+phoenix::function<newexpelt_> const NewExpElt = newexpelt_();
 
 struct newbodyexp_
 {
@@ -86,7 +87,7 @@ struct newbodyexp_
 	};
 };
 
-function<newbodyexp_> const NewBodyExp = newbodyexp_(); 
+phoenix::function<newbodyexp_> const NewBodyExp = newbodyexp_(); 
 
 
 struct modcoeff_
@@ -104,7 +105,7 @@ struct modcoeff_
 	};
 };
 
-function<modcoeff_> const ModifCoeffExpElt = modcoeff_();
+phoenix::function<modcoeff_> const ModifCoeffExpElt = modcoeff_();
 
 struct pushback_
 {
@@ -121,7 +122,7 @@ struct pushback_
 	};
 };
 
-function<pushback_> const PushBack = pushback_();
+phoenix::function<pushback_> const PushBack = pushback_();
 
 struct pushbackbodyexp_
 {
@@ -138,7 +139,7 @@ struct pushbackbodyexp_
 	};
 };
 
-function<pushbackbodyexp_> const PushBackBodyExp = pushbackbodyexp_();
+phoenix::function<pushbackbodyexp_> const PushBackBodyExp = pushbackbodyexp_();
 
 struct newexpr_
 {
@@ -162,7 +163,7 @@ struct newexpr_
 	};
 };
 
-function<newexpr_> const NewExpression = newexpr_();
+phoenix::function<newexpr_> const NewExpression = newexpr_();
 
 struct newexplist_
 {
@@ -184,42 +185,42 @@ struct newexplist_
 	};
 };
 
-function<newexplist_> const NewExpList = newexplist_();
+phoenix::function<newexplist_> const NewExpList = newexplist_();
 
-struct int_closure : boost::spirit::closure<int_closure, int>
+struct int_closure : boost::spirit::classic::closure<int_closure, int>
 {
 	member1 val;
 };
 
-struct id_closure : boost::spirit::closure<id_closure, unsigned int>
+struct id_closure : boost::spirit::classic::closure<id_closure, unsigned int>
 {
 	member1 plid; // Attention on ne peut pas utiliser id comme nom
 };
 
-struct ExpElt_closure : boost::spirit::closure<ExpElt_closure, ExpElt *, unsigned int, int>
+struct ExpElt_closure : boost::spirit::classic::closure<ExpElt_closure, ExpElt *, unsigned int, int>
 {
 	member1 val;
 	member2 coeff;
 };
 
-/* struct ExpAdd_closure : boost::spirit::closure<ExpAdd_closure, ExpAdd *, int>
+/* struct ExpAdd_closure : boost::spirit::classic::closure<ExpAdd_closure, ExpAdd *, int>
 {
 	member1 val;
 	member2 coeff;
 }; */
 
-struct BodyExp_closure : boost::spirit::closure<BodyExp_closure, BodyExp*, int>
+struct BodyExp_closure : boost::spirit::classic::closure<BodyExp_closure, BodyExp*, int>
 {
 	member1 val;
 	member2 coeff;
 };
 
-struct ExpComparator_closure : boost::spirit::closure<ExpComparator_closure, ExpComparator>
+struct ExpComparator_closure : boost::spirit::classic::closure<ExpComparator_closure, ExpComparator>
 {
 	member1 comp;
 };
 
-struct Expression_closure : boost::spirit::closure<Expression_closure, Expression*, BodyExp*,
+struct Expression_closure : boost::spirit::classic::closure<Expression_closure, Expression*, BodyExp*,
 													ExpComparator>
 {
 	member1 exp;
@@ -227,7 +228,7 @@ struct Expression_closure : boost::spirit::closure<Expression_closure, Expressio
 	member3 comp;
 };
 
-struct ExpList_closure : boost::spirit::closure<ExpList_closure, ExpList*>
+struct ExpList_closure : boost::spirit::classic::closure<ExpList_closure, ExpList*>
 {
 	member1 val;
 };

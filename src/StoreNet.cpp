@@ -28,7 +28,7 @@ extern unsigned int NbPhi;
 
 // ********************** StoreNet definition **********************
 
-void StoreNet::IsolateNode(unsigned int Id, bool Place)
+void StoreNet::IsolateNode(unsigned int Id, bool /*Place*/)
 {
 	// Destroy all arcs related to the node
 
