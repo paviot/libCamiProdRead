@@ -111,6 +111,11 @@ public:
 
 	bool IsEnd(void) const
 	{return End;};
+
+/*! \brief Opérateur d'égalité */
+
+	bool operator==(const ArcsDescription &a) const
+	{return (N == a.N) && (V == a.V) && (In == a.In) && (Out == a.Out);}
 };
 
 /*! \brief Un itérateur qui permet d'énumérer tous les arcs, qu'ils soient Pre, Post ou double. */
@@ -184,6 +189,11 @@ private:
 /*! \brief Implementation de l'opérateur ==. */
 
 	bool equal(ArcsIterator::iterator_adaptor_ const& x) const;
+
+/*! \brief Opérateur d'égalité */
+
+	bool operator==(const ArcsIterator &a) const
+	{return AD == a.AD;}
 };
 
 // ********************** Node definition **********************
