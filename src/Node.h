@@ -112,38 +112,26 @@ public:
 
 	bool IsEnd(void) const
 	{return End;};
-
-/*! \brief Opérateur d'égalité */
-
-	bool operator==(const ArcsDescription &a) const
-	{return (N == a.N) && (V == a.V) && (In == a.In) && (Out == a.Out);}
 };
 
 /*! \brief Un itérateur qui permet d'énumérer tous les arcs, qu'ils soient Pre, Post ou double. */
 
+
 class ArcsIterator
-  : public boost::iterator_adaptor<
-        ArcsIterator					// Derived
-      , ArcsDescription*				// Base
-      , boost::use_default				// Value
-      , boost::forward_traversal_tag	// CategoryOrTraversal
-    >
 {
 private:
 
 	ArcsDescription AD;
 
- public:
+public:
 
 /*! \brief Un constructeur. */
 
-	ArcsIterator(Node* const n, bool b)
-	  : ArcsIterator::iterator_adaptor_(&AD), AD(n, b) {}
+	ArcsIterator(Node* const n, bool b): AD(n, b) {}
 
 /*! \brief Un constructeur. */
 
-	explicit ArcsIterator(ArcsDescription* p)
-	  : ArcsIterator::iterator_adaptor_(p), AD(0, true) {}
+//	explicit ArcsIterator(ArcsDescription* p): AD(0, true) {}
 
 /*! \brief Retourne le noeud à l'autre bout de l'arc. */
 
@@ -180,22 +168,29 @@ private:
 
 	ArcsIterator end(void) const;
 
+/* \brief Operateur ++ */
+
+	ArcsIterator operator++() {increment(); return (*this);}
+
+/* \brief Opérateur d'égalité */
+
+	bool operator==(const ArcsIterator &a) const;
+
+/* \brief Opérateur d'inégalité */
+
+	bool operator!=(const ArcsIterator &a) const {return !(*this == a);}
+
+/* \brief Opérateur d'indirection */
+
+	ArcsDescription operator*() {return AD;}
+
 private:
-	friend class boost::iterator_core_access;
-    
 /*! \brief Implementation de l'operateur ++. */
 
 	void increment();
-
-/*! \brief Implementation de l'opérateur ==. */
-
-	bool equal(ArcsIterator::iterator_adaptor_ const& x) const;
-
-/*! \brief Opérateur d'égalité */
-
-	bool operator==(const ArcsIterator &a) const
-	{return AD == a.AD;}
 };
+
+
 
 // ********************** Node definition **********************
 

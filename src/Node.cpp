@@ -107,7 +107,7 @@ struct NbDouble
 {
 	int Nb;
 	NbDouble(void) {Nb = 0;};
-	void operator() (ArcsDescription &A)
+	void operator() (ArcsDescription A)
 	{
 /*		cout << "Le noeud sur lequel porte l'itération : " << A.GetRefNode()->GetName() << endl;
 		cout << "Le noeud sur à l'autre bout : " << A.GetNode()->GetName() << endl;
@@ -237,7 +237,7 @@ void ArcsIterator::increment()
 		cout << "$$$ Le noeud sur à l'autre bout : " << AD.GetNode()->GetName() << endl;
 		cout << "$$$ Valeur sur l'arc entrant : " << AD.GetIn() << endl;
 		cout << "$$$ Valeur sur l'arc sortant : " << AD.GetOut() << endl;*/
-		this->base_reference() = &AD;
+//		this->base_reference() = &AD;
 }
 
 /*bool ArcsIterator::operator!= (const ArcsIterator &A) const
@@ -250,16 +250,29 @@ void ArcsIterator::increment()
 	return (V != A.GetNode()) || (N != A.GetRefNode()) || (In != A.GetIn()) || (Out != A.GetOut());
 }*/
 
-bool ArcsIterator::equal(ArcsIterator::iterator_adaptor_ const& x) const{
-	if (AD.End != x.base()->IsEnd())
+/*
+bool ArcsIterator::equal(const ArcsIterator &a) const
+{
+	if (AD.End != a.End)
 		return false;
 	else if (AD.End)
 		return true;
 
-	return 	(AD.V == x.base()->GetNode()) && (AD.N == x.base()->GetRefNode()) && 
-			(AD.In == x.base()->GetIn()) && (AD.Out == x.base()->GetOut());
+	return 	(AD.V == a.GetNode()) && (AD.N == a.GetRefNode()) && 
+			(AD.In == a.GetIn()) && (AD.Out == a.GetOut());
 }
+*/
 
+bool ArcsIterator::operator==(const ArcsIterator &a) const
+{
+	if (AD.End != a.AD.End)
+		return false;
+	else if (AD.End)
+		return true;
+
+	return 	(AD.V == a.GetNode()) && (AD.N == a.GetRefNode()) && 
+			(AD.In == a.GetIn()) && (AD.Out == a.GetOut());
+}
 
 // ********************** Transition definition **********************
 
