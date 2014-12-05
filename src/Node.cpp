@@ -91,7 +91,7 @@ struct NbSimple
 {
 	int Nb;
 	NbSimple(void) {Nb = 0;};
-	void operator() (ArcsDescription &A)
+	void operator() (ArcsDescription A)
 	{
 		if ((A.GetIn() == 0) || (A.GetOut() == 0))
 			Nb++;

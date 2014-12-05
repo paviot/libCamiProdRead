@@ -13,7 +13,8 @@
 
 #include <vector>
 #include<sstream>
-#include <boost/iterator/iterator_adaptor.hpp>
+//#include <boost/iterator/iterator_adaptor.hpp>
+//#include <boost/iterator_adaptors.hpp>
 
 #include "Arcs.h"
 
