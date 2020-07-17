@@ -30,10 +30,10 @@ class Node;
 
 class ArcsIterator;
 
-/*! \brief Une classe décrit la relation entre une place et une transition.
+/*! \brief Une classe dÃ©crit la relation entre une place et une transition.
 
-	Cette classe est utilisée pour lister tous les arcs. Il est alors facile de detecter 
-	les arcsc doubles. */
+	Cette classe est utilisÃ©e pour lister tous les arcs. Il est alors facile de dÃ©tecter
+	les arcs doubles. */
 
 class ArcsDescription
 {
@@ -41,17 +41,17 @@ private:
 friend class ArcsIterator;
 
 /*! \var Node *N
-	\brief Le noeud sur lequel va porter l'énumération. */
+	\brief Le noeud sur lequel va porter l'ï¿½numï¿½ration. */
 
 	Node *N;
 
 /*! \var bool End
-	\brief Indique si on est à la fin. */
+	\brief Indique si on est ï¿½ la fin. */
 
 	bool End;
 		
 /*! \var ArcsContainer::iterator itIn
-	\brief Pointeur sur les arcs en entrée du noeud. */
+	\brief Pointeur sur les arcs en entrï¿½e du noeud. */
 	
 	ArcsContainer::iterator itIn;
 
@@ -61,19 +61,19 @@ friend class ArcsIterator;
 	ArcsContainer::iterator itOut;
 
 /*! \var Node *V
-	\brief Le noeud à l'autre bout de l'arc. */
+	\brief Le noeud ï¿½ l'autre bout de l'arc. */
 
 	Node *V;
 
 /*! \var unsigned int In
-	\brief Valeur associée à l'arc entrant sur le noeud CamiProdRead::ArcsIterator::N.
+	\brief Valeur associï¿½e ï¿½ l'arc entrant sur le noeud CamiProdRead::ArcsIterator::N.
 	
 	0 s'il n'existe pas d'arc entrant. */
 
 	unsigned int In;
 
 /*! \var unsigned int Out
-	\brief Valeur associée à l'arc sortant du noeud CamiProdRead::ArcsIterator::N.
+	\brief Valeur associï¿½e ï¿½ l'arc sortant du noeud CamiProdRead::ArcsIterator::N.
 	
 	0 s'il n'existe pas d'arc sortant. */
 
@@ -86,12 +86,12 @@ friend class ArcsIterator;
 
 public:
 
-/*! \brief Retourne le noeud à l'autre bout de l'arc. */
+/*! \brief Retourne le noeud ï¿½ l'autre bout de l'arc. */
 
 	Node *GetNode(void) const
 	{return V;}
 
-/*! \brief Retourne le noeud sur lequel porte l'énumération. */
+/*! \brief Retourne le noeud sur lequel porte l'ï¿½numï¿½ration. */
 
 	Node *GetRefNode(void) const
 	{return N;}
@@ -114,7 +114,7 @@ public:
 	{return End;};
 };
 
-/*! \brief Un itérateur qui permet d'énumérer tous les arcs, qu'ils soient Pre, Post ou double. */
+/*! \brief Un itï¿½rateur qui permet d'ï¿½numï¿½rer tous les arcs, qu'ils soient Pre, Post ou double. */
 
 
 class ArcsIterator
@@ -133,12 +133,12 @@ public:
 
 //	explicit ArcsIterator(ArcsDescription* p): AD(0, true) {}
 
-/*! \brief Retourne le noeud à l'autre bout de l'arc. */
+/*! \brief Retourne le noeud ï¿½ l'autre bout de l'arc. */
 
         Node *GetNode(void) const
         {return AD.V;}
 
-/*! \brief Retourne le noeud sur lequel porte l'énumération. */
+/*! \brief Retourne le noeud sur lequel porte l'ï¿½numï¿½ration. */
 
         Node *GetRefNode(void) const
         {return AD.N;}
@@ -160,11 +160,11 @@ public:
         bool IsEnd(void) const
         {return AD.End;};
 
-/*! \brief Initialisation de l'énumération. */
+/*! \brief Initialisation de l'ï¿½numï¿½ration. */
 
 	ArcsIterator begin(void);
 
-/*! \brief Terminaison de l'énumération. */
+/*! \brief Terminaison de l'ï¿½numï¿½ration. */
 
 	ArcsIterator end(void) const;
 
@@ -172,15 +172,15 @@ public:
 
 	ArcsIterator operator++() {increment(); return (*this);}
 
-/* \brief Opérateur d'égalité */
+/* \brief Opï¿½rateur d'ï¿½galitï¿½ */
 
 	bool operator==(const ArcsIterator &a) const;
 
-/* \brief Opérateur d'inégalité */
+/* \brief Opï¿½rateur d'inï¿½galitï¿½ */
 
 	bool operator!=(const ArcsIterator &a) const {return !(*this == a);}
 
-/* \brief Opérateur d'indirection */
+/* \brief Opï¿½rateur d'indirection */
 
 	ArcsDescription operator*() {return AD;}
 
@@ -194,17 +194,17 @@ private:
 
 // ********************** Node definition **********************
 
-/*! \brief Définition du type du noeud. */
+/*! \brief Dï¿½finition du type du noeud. */
 
 enum NodeType {
 	PL,			/*!< Noeud de type place. */
 	TR			/*!< Noeud de type transition. */
 };
 
-/*! \brief Cette classe décrit un noeud (place ou transition) de façon générale.
+/*! \brief Cette classe dï¿½crit un noeud (place ou transition) de faï¿½on gï¿½nï¿½rale.
 	
-	Il s'agit d'une classe abstraite : elle n'est pas utilisée directement, mais au travers des 
-	deux classes qui héritent d'elle : CamiProdRead::Place et CamiProdRead::Transition. */
+	Il s'agit d'une classe abstraite : elle n'est pas utilisï¿½e directement, mais au travers des 
+	deux classes qui hï¿½ritent d'elle : CamiProdRead::Place et CamiProdRead::Transition. */
 
 class Node
 {
@@ -226,9 +226,9 @@ protected:
 	NodeType Type;
 
 /*! \var int Info
-	\brief Attribut servant à stocker une valeur associée au noeud.
+	\brief Attribut servant ï¿½ stocker une valeur associï¿½e au noeud.
 	
-	Ce champ n'est pas utilisé par la bibliothèque. L'utilisateur peut s'en servir directement 
+	Ce champ n'est pas utilisï¿½ par la bibliothï¿½que. L'utilisateur peut s'en servir directement 
 	ou pour stocker un indice dans un tableau. */
 
 	int Info;
@@ -238,8 +238,8 @@ protected:
 	\param i Identificateur du nouveau noeud.
 	\param T Type de noeud. 
 
-	Le constructeur est défini comme protected pour éviter une instanciation directe. Seules les 
-	classes héritées (CamiProdRead::Place et CamiProdRead:Transition) peuvent être instanciées. */
+	Le constructeur est dï¿½fini comme protected pour ï¿½viter une instanciation directe. Seules les 
+	classes hï¿½ritï¿½es (CamiProdRead::Place et CamiProdRead:Transition) peuvent ï¿½tre instanciï¿½es. */
 
 	Node(const unsigned int i, NodeType T):Id(i), Type(T), EnumerateArcs(this, false) {};
 
@@ -256,7 +256,7 @@ public:
 	ArcsContainer Out;
 
 /*! \var ArcsIterator EnumerateArcs
-	\brief Permet d'énumérer tous les arcs et de déterminer quels sont les arcs doubles. */
+	\brief Permet d'ï¿½numï¿½rer tous les arcs et de dï¿½terminer quels sont les arcs doubles. */
 
 	ArcsIterator EnumerateArcs;
 
@@ -276,33 +276,33 @@ public:
 
 /*! \brief Ajout d'un arc entrant.
 
-	\param A L'arc à ajouter. */
+	\param A L'arc ï¿½ ajouter. */
 
 	void AddIn(Arc *A)
 	{In.insert(A);};
 
 /*! \brief Suppression d'un arc entrant.
 
-	\param A L'arc à retirer. */
+	\param A L'arc ï¿½ retirer. */
 
 	void RemoveIn(const Arc *A)
 	{In.erase(A);};
 
-/* \brief Retourne la liste des arcs en entrée. */
+/* \brief Retourne la liste des arcs en entrï¿½e. */
 
 /*	const ArcValuation &LinksIn(void) const
 	{return In;}; */
 
 /*! \brief Ajout d'un arc sortant.
 
-	\param A L'arc à ajouter. */
+	\param A L'arc ï¿½ ajouter. */
 
 	void AddOut(Arc *A)
 	{Out.insert(A);};
 
 /*! \brief Suppression d'un arc sortant.
 
-	\param A L'arc à retirer. */
+	\param A L'arc ï¿½ retirer. */
 
 	void RemoveOut(const Arc *A)
 	{Out.erase(A);};
@@ -314,15 +314,15 @@ public:
 
 /*! \brief Recherche d'un arc entrant.
 
-	\param N Le noeud à l'autre bout de l'arc.
-	\return La valuation associée à l'arc. */
+	\param N Le noeud ï¿½ l'autre bout de l'arc.
+	\return La valuation associï¿½e ï¿½ l'arc. */
 
 	unsigned int GetIn(const Node *N);
 
 /*! \brief Recherche d'un arc sortant.
 
-	\param N Le noeud à l'autre bout de l'arc.
-	\return La valuation associée à l'arc. */
+	\param N Le noeud ï¿½ l'autre bout de l'arc.
+	\return La valuation associï¿½e ï¿½ l'arc. */
 
 	unsigned int GetOut(const Node *N);
 
@@ -367,28 +367,28 @@ public:
 
 // ********************** Transition definition **********************
 
-/*! \brief Macro utilisée lors de l'évaluation de la précondition d'une 
+/*! \brief Macro utilisï¿½e lors de l'ï¿½valuation de la prï¿½condition d'une 
 	transition.
 
-	NOTINVOLVED est utilisée si la place testée n'est pas précondition de la
+	NOTINVOLVED est utilisï¿½e si la place testï¿½e n'est pas prï¿½condition de la
 	transition. 
 	\sa Transition::IsPrecondValid */
 
 #define NOTINVOLVED 0
 
-/*! \brief Macro utilisée lors de l'évaluation de la précondition d'une 
+/*! \brief Macro utilisï¿½e lors de l'ï¿½valuation de la prï¿½condition d'une 
 	transition.
 
-	VALID est utilisée si la place testée contient suffisamment de jetons pour
+	VALID est utilisï¿½e si la place testï¿½e contient suffisamment de jetons pour
 	le franchissement de la transition. 
 	\sa Transition::IsPrecondValid */
 
 #define VALID       1
 
-/*! \brief Macro utilisée lors de l'évaluation de la précondition d'une 
+/*! \brief Macro utilisï¿½e lors de l'ï¿½valuation de la prï¿½condition d'une 
 	transition.
 
-	INVALID est utilisée si la place testée ne contient pas suffisamment de 
+	INVALID est utilisï¿½e si la place testï¿½e ne contient pas suffisamment de 
 	jetons pour le franchissement de la transition. 
 	\sa Transition::IsPrecondValid */
 
@@ -411,7 +411,7 @@ public:
 /*! \brief Permet de tester si une place contient suffisamment de jetons pour 
 	permettre le franchissement de la transition.
 	
-	\param N Le noeud décrivant la place.
+	\param N Le noeud dï¿½crivant la place.
 	\param Val Nombre de jetons dans la place \a N.
 	\return L'une des valeurs suivantes :
 		- #NOTINVOLVED,
@@ -420,7 +420,7 @@ public:
 
 	char IsPrecondValid(const Node *N, const unsigned int Val);
 
-/*! \brief Retourne le nombre de préconditions de la transition. */
+/*! \brief Retourne le nombre de prï¿½conditions de la transition. */
 
 	unsigned int NbPrecond(void)
 	{return In.NbElements();};
@@ -440,10 +440,10 @@ private:
 	unsigned int Initial;
 
 /*! \var unsigned int Position
-	\brief Variable non utilisée. 
+	\brief Variable non utilisï¿½e. 
 	
-	A l'origine, cette bibliothèque était conçue pour une application de calcul
-	des états accessibles en utilisant les DDDs. Le but de cette variable était
+	A l'origine, cette bibliothï¿½que ï¿½tait conï¿½ue pour une application de calcul
+	des ï¿½tats accessibles en utilisant les DDDs. Le but de cette variable ï¿½tait
 	de stocker la position de la place dans la liste des places (en vue de 
 	trouver le meilleur ordre possible sur ces places, ce projet n'a jamais
 	vu le jour sous cette forme). */
@@ -456,7 +456,7 @@ public:
 
 	Initialise les variables Node::Id et Place::Initial.
 	
-	La variable Place::Initial est initialisée à 0.
+	La variable Place::Initial est initialisï¿½e ï¿½ 0.
 	\param Id Identificateur de la nouvelle classe. */
 
 	Place(const unsigned int Id):Node(Id, PL) {Initial = 0;};
@@ -472,13 +472,13 @@ public:
 	unsigned int GetInitial(void) const
 	{return Initial;};
 
-/*! \brief Non utilisé.
+/*! \brief Non utilisï¿½.
 	\sa Place::Position */
 
 	void SetPosition(const unsigned int Pos)
 	{Position = Pos;};
 
-/*! \brief Non utilisé.
+/*! \brief Non utilisï¿½.
 	\sa Place::Position */
 
 	unsigned int GetPosition(void) const

@@ -10,6 +10,13 @@ AC_CONFIG_SRCDIR([src/IO.cpp])
 AC_PROG_CXX
 AC_PROG_RANLIB
 
+AC_CONFIG_SUBDIRS(resources/tinyxml2-master)
+
+#CPPFLAGS="-Iresources/tinyxml2-master $CPPFLAGS"
+#LDFLAGS="-Lresources/tinyxml2-master $LDFLAGS"
+
+#AC_CHECK_LIB(tinyxml2,tinyxml2::myVisitor::VisitEnter)
+
 AC_CHECK_HEADER_STDBOOL
 AC_FUNC_MALLOC
 

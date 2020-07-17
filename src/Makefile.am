@@ -1,7 +1,7 @@
 lib_LIBRARIES=libCamiProdRead.a
 
-AM_CXXFLAGS = -std=c++11 -O3 -Wall -Wextra
+AM_CXXFLAGS = -std=c++14 -O3 -Wall -Wextra
 
-libCamiProdRead_a_SOURCES=Arcs.cpp Node.cpp Utilities.cpp Expression.cpp Parser.cpp Waiting.cpp IO.cpp StoreNet.cpp
+libCamiProdRead_a_SOURCES=Arcs.cpp Node.cpp Utilities.cpp Waiting.cpp IO.cpp StoreNet.cpp XML.cpp PNML.cpp Properties.cpp
 
-include_HEADERS=Arcs.h IO.h Parser.h Utilities.h Expression.h Node.h StoreNet.h Waiting.h
+include_HEADERS=Arcs.h IO.h Utilities.h Node.h StoreNet.h Waiting.h Properties.h

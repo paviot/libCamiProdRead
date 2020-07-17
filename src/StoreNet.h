@@ -39,6 +39,7 @@
  	StructuralOrder, mais elle semble buggée.
  	
  	\section Historique
+ 	- V1.1.7.2 : Suppression des fichiers Parser.cpp, Parser.h, Expression.h, Expression.cpp
  	- V1.1.7.1 : Modification pour permettre la compatibilité C++11 (avec clang 3.4)
  	- V1.1.7 :	Suppression du support PROD.
  	- V1.1.6 :	Ajout des fonctions de stockage de transitions pour les franchissements
@@ -110,6 +111,7 @@
 #include <utility>
 #include <fstream>
 #include "Node.h"
+#include "PNML.h"
 
 /*! \brief Numéro de version de la bibliothèque. */
 
@@ -345,7 +347,7 @@ public:
 /*! \brief Constructeur de la classe à partir d'un nom de fichier. 
 
 	il prend en paramètre un nom de fichier et in booléen qui indique s'il 
-	s'agit d'un fichier CAMI ou PROD. */
+	s'agit d'un fichier CAMI ou PNML. */
 
 		StoreNet(const char *fileName, bool cami);
 

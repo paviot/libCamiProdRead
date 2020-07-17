@@ -11,7 +11,7 @@ using namespace CamiProdRead;
 bool Arc::operator< (const Arc &A) const
 {
 	if (Input->GetId() == A.Input->GetId())
-		return Output->GetId() == A.Output->GetId();
+		return Output->GetId() < A.Output->GetId();
 	else
 		return Input->GetId() < A.Input->GetId();
 }

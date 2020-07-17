@@ -10,7 +10,7 @@ class StoreNet;
 
 namespace CamiProdRead {
 
-/*! \brief Classe décrivant les arcs.  */
+/*! \brief Classe dï¿½crivant les arcs.  */
 
 class Node;
 
@@ -21,12 +21,12 @@ class Arc
 private:
 
 /*! \var Node *Input
-	\brief Noeud de départ de l'arc. */
+	\brief Noeud de dï¿½part de l'arc. */
 	
 	Node 		*Input;
 
 /*! \var Node *Output
-	\brief Noeud d'arrivée de l'arc. */
+	\brief Noeud d'arrivï¿½e de l'arc. */
 
 	Node 		*Output;
 
@@ -36,7 +36,7 @@ private:
 	unsigned int Id;
 	
 /*! \var unsigned int Value
-	\brief Valeur associée à l'arc. */
+	\brief Valeur associï¿½e ï¿½ l'arc. */
 	
 	unsigned int Value;
 
@@ -44,30 +44,30 @@ public:
 
 /*! \brief Le constructeur de la classe.
 
-	\param I Noeud de départ de l'arc.
-	\param O Noeud d'arrivée de l'arc.
-	\param i Identificateur de l'arc (valeur par défaut 0).
-	\param V Valeur associée à l'arc (valeur par défaut : 1). */
+	\param I Noeud de dï¿½part de l'arc.
+	\param O Noeud d'arrivï¿½e de l'arc.
+	\param i Identificateur de l'arc (valeur par dï¿½faut 0).
+	\param V Valeur associï¿½e ï¿½ l'arc (valeur par dï¿½faut : 1). */
 
 	Arc(Node *I, Node *O, unsigned int i = 0, unsigned int V = 1): Input(I), Output(O), Id(i), 
 																	Value(V) {};
-
-	/*! \brief Retourne le noeud de départ de l'arc. */
+	
+	/*! \brief Retourne le noeud de dï¿½part de l'arc. */
 	
 	Node *GetStart(void) const
 	{return Input;};
 	
-	/*! \brief Retourne le noeud d'arrivée de l'arc. */
+	/*! \brief Retourne le noeud d'arrivï¿½e de l'arc. */
 	
 	Node *GetEnd(void) const
 	{return Output;};
 	
-	/*! \brief Modifie la valeur associée à l'arc. */
+	/*! \brief Modifie la valeur associï¿½e ï¿½ l'arc. */
 	
 	void SetValue(unsigned int V)
 	{Value = V;};
 	
-	/*! \brief Retourne la valeur associée à l'arc. */
+	/*! \brief Retourne la valeur associï¿½e ï¿½ l'arc. */
 	
 	unsigned int GetValue(void) const
 	{return Value;};
@@ -84,17 +84,17 @@ public:
 	
 	/*! \brief Comparaison de 2 arcs. 
 	
-		Le test s'effectue d'abord sur l'identité des noeuds de départs des 2 arcs. En cas 
-		d'égalité, le test s'effectue sur l'identité des noeuds d'arrivées des 2 arcs. */
+		Le test s'effectue d'abord sur l'identitï¿½ des noeuds de dï¿½parts des 2 arcs. En cas 
+		d'ï¿½galitï¿½, le test s'effectue sur l'identitï¿½ des noeuds d'arrivï¿½es des 2 arcs. */
 	
 	bool operator < (const Arc &A) const;
 };
 
-/*! \brief Type utilisé pour stocker un ensemble d'arcs. */
+/*! \brief Type utilisï¿½ pour stocker un ensemble d'arcs. */
 
 typedef vector<Arc *> ArcsVector;
 
-/*! \brief Un container pour les arcs basé sur les vecteurs. */
+/*! \brief Un container pour les arcs basï¿½ sur les vecteurs. */
 
 // ********************** ArcsContainer definition **********************
 
@@ -110,20 +110,20 @@ friend class ::StoreNet;
 
 		ArcsVector _Arcs;
 
-/*! \brief Ajout d'un arc à la liste des arcs.
-	\param P est le pointeur sur l'arc à ajouter.
+/*! \brief Ajout d'un arc ï¿½ la liste des arcs.
+	\param P est le pointeur sur l'arc ï¿½ ajouter.
 		
-	Cette méthode est utilisée par Node::AddIn, Node::AddOut et StoreNet::AddArc. Elle ne doit pas 
-	être utilisée autrement. */
+	Cette mï¿½thode est utilisï¿½e par Node::AddIn, Node::AddOut et StoreNet::AddArc. Elle ne doit pas 
+	ï¿½tre utilisï¿½e autrement. */
 
 	void insert(CamiProdRead::Arc *P)
 	{_Arcs.push_back(P);};
 	
-/*! \brief On retire un élément de la liste des éléments.
+/*! \brief On retire un ï¿½lï¿½ment de la liste des ï¿½lï¿½ments.
 
-	\param P est le pointeur sur l'arc à retirer.
+	\param P est le pointeur sur l'arc ï¿½ retirer.
 		
-	Cette méthode est utilisée par Node::RemoveIn et Node::RemoveOut. Elle ne doit pas être utilisée
+	Cette mï¿½thode est utilisï¿½e par Node::RemoveIn et Node::RemoveOut. Elle ne doit pas ï¿½tre utilisï¿½e
 	autrement. */
 
 	void erase(const CamiProdRead::Arc *P);
@@ -132,13 +132,13 @@ public:
 	
 /*! \brief Constructeur. */
 
-	ArcsContainer () {};
+	ArcsContainer ():_Arcs() {};
 
 /*! \brief Destructeur. */
 
 	~ArcsContainer () {};
 
-/*! \brief Iterateur constant sur les éléments.
+/*! \brief Iterateur constant sur les ï¿½lï¿½ments.
 
 	\sa begin, end */
 
@@ -150,39 +150,39 @@ public:
 
 	typedef ArcsVector::iterator iterator;
 
-/*! \brief Initialisation de l'itérateur sur les éléments. */
+/*! \brief Initialisation de l'itï¿½rateur sur les ï¿½lï¿½ments. */
 
 	iterator begin(void)
 	{return _Arcs.begin();};
 
-/*! \brief Initialisation de l'itérateur constant sur les éléments. */
+/*! \brief Initialisation de l'itï¿½rateur constant sur les ï¿½lï¿½ments. */
 
 	const_iterator begin(void) const
 	{return _Arcs.begin();};
 
-/*! \brief Valeur de fin de l'itérateur sur les éléments. */
+/*! \brief Valeur de fin de l'itï¿½rateur sur les ï¿½lï¿½ments. */
 
 	iterator end(void)
 	{return _Arcs.end();};
 
-/*! \brief Valeur de fin de l'itérateur constant sur les éléments. */
+/*! \brief Valeur de fin de l'itï¿½rateur constant sur les ï¿½lï¿½ments. */
 
 	const_iterator end(void) const
 	{return _Arcs.end();};
 
-/*! \brief Retourne le nombre de places dans le modèle. */
+/*! \brief Retourne le nombre de places dans le modï¿½le. */
 
 	unsigned int NbElements(void) const
 	{return _Arcs.size();};
 
-/*! \brief Accès direct à la nième place. */
+/*! \brief Accï¿½s direct ï¿½ la niï¿½me place. */
 
 	const CamiProdRead::Arc *operator[](unsigned int i) const
 	{return _Arcs[i];};
 
-/*! \brief Sélection suivant l'identificateur.
-	\param Id Identificateur de l'arc à chercher.
-	\return l'arc trouvé ou NULL.
+/*! \brief Sï¿½lection suivant l'identificateur.
+	\param Id Identificateur de l'arc ï¿½ chercher.
+	\return l'arc trouvï¿½ ou NULL.
 	
 	Utile lors de l'initialisation du CAMI.*/
 

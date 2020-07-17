@@ -20,11 +20,15 @@
 #include "Node.h"
 #include "StoreNet.h"
 
+#include "XML.h"
+
 //#define yyparse cpr_parse
 
 extern unsigned int NbPhi;
 
 // enum {CN, PO, CT, PT, CA, PI};
+
+using namespace std;
 
 // ********************** StoreNet definition **********************
 
@@ -72,20 +76,18 @@ void SortArcs(CamiProdRead::Node *N)
 void StoreNet::init(const int argc, const char** argv)
 {
 	if (argc < 2)
-		Error("Parameters: [-prod] <InputFile>");
+		Error("Parameters: [-pnml] <InputFile>");
 
-//	if (strcmp(argv[1], "-prod") == 0)
-// 		if (argc < 3)
-// 			Error(Message);
-// 		else
-// 			ProdInit(argv[2]);	
-//	else
-//		CAMIInit(argv[1]);
-
-	if (strcmp(argv[1], "-prod") == 0)
-		Error("-prod is a deprecated feature");
-	else
+	if (strcmp(argv[1], "-pnml") == 0)
+ 		if (argc < 3)
+ 			Error("Parameters: [-pnml] <InputFile>");
+ 		else
+ 			PNML(argv[2], this);
+	else if (strcmp(argv[1], "-prod") == 0)
+            Error("-prod is not supported anymore");
+        else
 		CAMIInit(argv[1]);
+
 	
 	for_each(Places.begin(), Places.end(), SortArcs);
 	for_each(Transitions.begin(), Transitions.end(), SortArcs);
@@ -108,7 +110,7 @@ StoreNet::StoreNet(const char *fileName, bool cami): Places(), Transitions()
 	}
 	else
 	{
-		argv[1] = "-prod";
+		argv[1] = "-pnml";
 		argv[2] = fileName;
 		argc = 3;
 	}
@@ -137,7 +139,7 @@ void StoreNet::Elements::erase(const CamiProdRead::Node *P)
 
 void StoreNet::SetName(const unsigned int Id, char *Name)
 {
-/*! \pre \a Id doit être connue dans la variable #Nodes. */
+/*! \pre \a Id doit ï¿½tre connue dans la variable #Nodes. */
 	if (Nodes.find(Id) == Nodes.end())
 				Error("Unknown Place Id");
 	else
@@ -146,7 +148,7 @@ void StoreNet::SetName(const unsigned int Id, char *Name)
 
 const string StoreNet::GetName(const unsigned int Id) const
 {
-/*! \pre \a Id doit être connue dans la variable #Nodes, sinon on termine en 
+/*! \pre \a Id doit ï¿½tre connue dans la variable #Nodes, sinon on termine en 
 	erreur. */
 	
 	NodeList::const_iterator it = Nodes.find(Id);
@@ -415,7 +417,7 @@ void StoreNet::CAMIInit(const char *FileName)
 	  		Error("Unknown CAMI command");
 	  }
 
-/*		cout << "Etat présent" << endl;
+/*		cout << "Etat prï¿½sent" << endl;
 		Print(); */
 	}
 
@@ -441,8 +443,31 @@ void StoreNet::CAMIInit(const char *FileName)
 void StoreNet:: AddArc(const unsigned int IdInit, const unsigned int IdDest,
 					       	const unsigned int IdArc)
 {
-	CamiProdRead::Node *Init = Nodes[IdInit];
-	CamiProdRead::Node *Dest = Nodes[IdDest];
+//	CamiProdRead::Node *Init = Nodes[IdInit];
+//	CamiProdRead::Node *Dest = Nodes[IdDest];
+	CamiProdRead::Node *Init;
+	CamiProdRead::Node *Dest;
+	
+	NodeList::const_iterator it = Nodes.find(IdInit);
+	
+	if (it != Nodes.end())
+		Init = it->second;
+	else
+	{
+		cerr << "Unknown node reference while creating an arc: " << IdInit << endl;
+		exit(1);
+	}
+	
+	it = Nodes.find(IdDest);
+	
+	if (it != Nodes.end())
+		Dest = it->second;
+	else
+	{
+		cerr << "Unknown node reference while creating an arc: " << IdDest << endl;
+		exit(1);
+	}
+	
 	CamiProdRead::Arc *A = new CamiProdRead::Arc(Init, Dest, IdArc);
 	
 	Arcs.insert(A);
@@ -454,8 +479,8 @@ template<class T>
 struct PrintElement {
 	PrintElement() {};
 	
-	// Impossible de passer const Node *P en paramètre car Print peut modifier 
-	//	l'état du noeud (calcul de Action si ce n'avait pas été fait avant.
+	// Impossible de passer const Node *P en paramï¿½tre car Print peut modifier 
+	//	l'ï¿½tat du noeud (calcul de Action si ce n'avait pas ï¿½tï¿½ fait avant.
 	
 	void operator() (CamiProdRead::Node *P) {((T)P)->Print();}
 };
